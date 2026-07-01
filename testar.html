@@ -1,81 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testador de Senhas</title>
+
+    <title>Password Shield | Testador de Senhas</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<header>
+    <div class="background"></div>
 
-    <h1>🛡️ Testador de Senhas</h1>
+    <header>
 
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="gerar.html">Gerar Senha</a>
-    </nav>
+        <h1>🛡️ Testador de Senhas</h1>
 
-</header>
+        <nav>
 
-<main>
+            <a href="index.html">Início</a>
 
-    <section class="painel">
+            <a href="gerar.html">Gerar Senha</a>
 
-        <h2>Digite sua senha</h2>
+        </nav>
 
-        <input
-            type="password"
-            id="senhaTeste"
-            placeholder="Digite sua senha"
-        >
+    </header>
 
-    </section>
+    <main>
 
-    <section class="painel">
+        <!-- Campo da senha -->
 
-        <h2>Força</h2>
+        <section class="painel">
 
-        <div class="barra">
+            <h2>Digite sua senha</h2>
 
-            <div id="forca"></div>
+            <div class="campo-senha">
 
-        </div>
+                <input
+                    type="password"
+                    id="senhaTeste"
+                    placeholder="Digite sua senha...">
 
-        <p id="textoForca">
-            Aguardando análise...
-        </p>
+                <button
+                    class="toggleSenha"
+                    id="mostrarSenha"
+                    title="Mostrar senha">
 
-    </section>
+                    👁
 
-    <section class="painel">
+                </button>
 
-        <h2>Diagnóstico</h2>
+            </div>
 
-        <ul id="listaResultado">
+        </section>
 
-            <li>✔ Comprimento adequado</li>
+        <!-- Barra -->
 
-            <li>✔ Letras maiúsculas</li>
+        <section class="painel">
 
-            <li>✔ Letras minúsculas</li>
+            <h2>Nível de Segurança</h2>
 
-            <li>✔ Números</li>
+            <div class="barra">
 
-            <li>✔ Símbolos</li>
+                <div id="forca"></div>
 
-            <li>❌ Sequências (123, abc...)</li>
+            </div>
 
-            <li>❌ Caracteres repetidos</li>
+            <p id="textoForca">
 
-        </ul>
+                Digite uma senha para iniciar a análise.
 
-    </section>
+            </p>
 
-</main>
+        </section>
 
-<script src="testar.js"></script>
+        <!-- Diagnóstico -->
+
+        <section class="painel">
+
+            <h2>Diagnóstico</h2>
+
+            <ul id="listaResultado">
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <script src="testar.js"></script>
 
 </body>
+
 </html>
