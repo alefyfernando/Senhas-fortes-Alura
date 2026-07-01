@@ -1,103 +1,223 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Senhas</title>
+
+    <title>Password Shield | Gerador de Senhas</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<header>
+    <div class="background"></div>
 
-    <h1>🔑 Gerador de Senhas</h1>
+    <header>
 
-    <nav>
-        <a href="index.html">Início</a>
-        <a href="testar.html">Testar Senha</a>
-    </nav>
+        <h1>🔑 Gerador de Senhas</h1>
 
-</header>
+        <nav>
 
-<main>
+            <a href="index.html">Início</a>
 
-    <section class="painel">
+            <a href="testar.html">Testar Senha</a>
 
-        <h2>Senha Gerada</h2>
+        </nav>
 
-        <input
-            type="text"
-            id="campoSenha"
-            readonly
-        >
+    </header>
 
-        <button id="copiar">
-            Copiar
-        </button>
+    <main>
 
-    </section>
+        <!-- SENHA GERADA -->
 
-    <section class="painel">
+        <section class="painel">
 
-        <h2>Configurações</h2>
+            <h2>Senha Gerada</h2>
 
-        <label>Tamanho da senha</label>
+            <div class="campo-senha">
 
-        <div class="controle">
+                <input
+                    type="password"
+                    id="campoSenha"
+                    readonly
+                    placeholder="Clique em Gerar Nova Senha">
 
-            <button id="menos">-</button>
+                <button
+                    class="toggleSenha"
+                    id="mostrarSenha"
+                    title="Mostrar senha">
 
-            <span id="valorTamanho">12</span>
+                    👁
 
-            <button id="mais">+</button>
+                </button>
 
-        </div>
+            </div>
 
-        <label>
-            <input type="checkbox" id="maiusculas" checked>
-            Letras Maiúsculas
-        </label>
+            <button id="copiar">
 
-        <label>
-            <input type="checkbox" id="minusculas" checked>
-            Letras Minúsculas
-        </label>
+                📋 Copiar Senha
 
-        <label>
-            <input type="checkbox" id="numeros" checked>
-            Números
-        </label>
+            </button>
 
-        <label>
-            <input type="checkbox" id="simbolos" checked>
-            Símbolos
-        </label>
+        </section>
 
-        <button id="gerar">
-            Gerar Nova Senha
-        </button>
+        <!-- FORÇA -->
 
-    </section>
+        <section class="painel">
 
-    <section class="painel">
+            <h2>Nível de Segurança</h2>
 
-        <h2>Força da Senha</h2>
+            <div class="barra">
 
-        <div class="barra">
+                <div id="forca"></div>
 
-            <div id="forca"></div>
+            </div>
 
-        </div>
+            <p id="textoForca">
 
-        <p id="textoForca">
-            Aguardando...
-        </p>
+                Gere uma senha para iniciar.
 
-    </section>
+            </p>
 
-</main>
+        </section>
 
-<script src="gerar.js"></script>
+        <!-- CONFIGURAÇÕES -->
+
+        <section class="painel">
+
+            <h2>Configurações</h2>
+
+            <label>
+
+                Comprimento da senha
+
+            </label>
+
+            <div class="controle">
+
+                <button id="menos">
+
+                    −
+
+                </button>
+
+                <span id="valorTamanho">
+
+                    16
+
+                </span>
+
+                <button id="mais">
+
+                    +
+
+                </button>
+
+            </div>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="maiusculas"
+                    checked>
+
+                Letras maiúsculas
+
+            </label>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="minusculas"
+                    checked>
+
+                Letras minúsculas
+
+            </label>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="numeros"
+                    checked>
+
+                Números
+
+            </label>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="simbolos"
+                    checked>
+
+                Símbolos
+
+            </label>
+
+            <button id="gerar">
+
+                🎲 Gerar Nova Senha
+
+            </button>
+
+        </section>
+
+        <!-- INFORMAÇÕES -->
+
+        <section class="painel">
+
+            <h2>Informações da Senha</h2>
+
+            <ul id="listaResultado">
+
+                <li class="sucesso">
+
+                    Comprimento recomendado para maior segurança.
+
+                </li>
+
+                <li class="sucesso">
+
+                    Utilize letras maiúsculas e minúsculas.
+
+                </li>
+
+                <li class="sucesso">
+
+                    Inclua números e símbolos.
+
+                </li>
+
+                <li class="sucesso">
+
+                    Evite palavras conhecidas.
+
+                </li>
+
+                <li class="sucesso">
+
+                    Não reutilize senhas em outros sites.
+
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <script src="gerar.js"></script>
 
 </body>
+
 </html>
