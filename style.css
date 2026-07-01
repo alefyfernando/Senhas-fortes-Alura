@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+    --fundo: #071426;
+    --fundo-card: rgba(16, 35, 60, 0.85);
+    --azul: #1e88e5;
+    --azul-claro: #42a5f5;
+    --verde: #00c853;
+    --amarelo: #ffd600;
+    --vermelho: #ff1744;
+    --texto: #ffffff;
+    --borda: rgba(255,255,255,0.15);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(
+            135deg,
+            #00162E,
+            #002B59,
+            #001E40
+        );
+    color:var(--texto);
+}
+
+.container{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    text-align:center;
+    padding:20px;
+}
+
+.container h1{
+    font-size:3rem;
+}
+
+.container p{
+    font-size:1.2rem;
+}
+
+.menu{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.botao{
+    text-decoration:none;
+    color:white;
+    background:var(--azul);
+    padding:15px 30px;
+    border-radius:12px;
+    transition:.3s;
+    font-weight:600;
+}
+
+.botao:hover{
+    transform:translateY(-3px);
+    background:var(--azul-claro);
+}
+
+header{
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin-bottom:15px;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+    background:rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.18);
+}
+
+main{
+    width:min(1000px,95%);
+    margin:auto;
+    display:grid;
+    gap:20px;
+    padding:20px;
+}
+
+.painel{
+    background:var(--fundo-card);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--borda);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.3);
+}
+
+.painel h2{
+    margin-bottom:20px;
+}
+
+input[type="text"],
+input[type="password"]{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    margin-top:10px;
+    font-size:1rem;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#gerar,
+#copiar,
+#menos,
+#mais{
+    background:var(--azul);
+    color:white;
+}
+
+#gerar:hover,
+#copiar:hover,
+#menos:hover,
+#mais:hover{
+    background:var(--azul-claro);
+}
+
+#gerar,
+#copiar{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:600;
+}
+
+.controle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    margin:20px 0;
+}
+
+#menos,
+#mais{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    font-size:1.5rem;
+}
+
+#valorTamanho{
+    font-size:1.5rem;
+    font-weight:600;
+}
+
+label{
+    display:block;
+    margin:12px 0;
+}
+
+input[type="checkbox"]{
+    margin-right:10px;
+}
+
+.barra{
+    width:100%;
+    height:30px;
+    background:rgba(255,255,255,.15);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+#forca{
+    height:100%;
+    width:0%;
+    transition:.4s;
+    border-radius:20px;
+}
+
+.fraca{
+    width:30%;
+    background:var(--vermelho);
+}
+
+.media{
+    width:65%;
+    background:var(--amarelo);
+}
+
+.forte{
+    width:100%;
+    background:var(--verde);
+}
+
+#textoForca{
+    margin-top:15px;
+    text-align:center;
+    font-weight:600;
+}
+
+#listaResultado{
+    list-style:none;
+}
+
+#listaResultado li{
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,255,255,.05);
+}
+
+.sucesso{
+    border-left:5px solid var(--verde);
+}
+
+.erro{
+    border-left:5px solid var(--vermelho);
+}
+
+@media(max-width:768px){
+
+    .container h1{
+        font-size:2rem;
+    }
+
+    .menu{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .botao{
+        width:100%;
+    }
+
+    .controle{
+        gap:10px;
+    }
+
+}

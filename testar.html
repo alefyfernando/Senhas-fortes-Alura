@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testador de Senhas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+
+    <h1>🛡️ Testador de Senhas</h1>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="gerar.html">Gerar Senha</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="painel">
+
+        <h2>Digite sua senha</h2>
+
+        <input
+            type="password"
+            id="senhaTeste"
+            placeholder="Digite sua senha"
+        >
+
+    </section>
+
+    <section class="painel">
+
+        <h2>Força</h2>
+
+        <div class="barra">
+
+            <div id="forca"></div>
+
+        </div>
+
+        <p id="textoForca">
+            Aguardando análise...
+        </p>
+
+    </section>
+
+    <section class="painel">
+
+        <h2>Diagnóstico</h2>
+
+        <ul id="listaResultado">
+
+            <li>✔ Comprimento adequado</li>
+
+            <li>✔ Letras maiúsculas</li>
+
+            <li>✔ Letras minúsculas</li>
+
+            <li>✔ Números</li>
+
+            <li>✔ Símbolos</li>
+
+            <li>❌ Sequências (123, abc...)</li>
+
+            <li>❌ Caracteres repetidos</li>
+
+        </ul>
+
+    </section>
+
+</main>
+
+<script src="testar.js"></script>
+
+</body>
+</html>

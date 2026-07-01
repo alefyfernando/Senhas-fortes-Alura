@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+
+    <h1>🔑 Gerador de Senhas</h1>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="testar.html">Testar Senha</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="painel">
+
+        <h2>Senha Gerada</h2>
+
+        <input
+            type="text"
+            id="campoSenha"
+            readonly
+        >
+
+        <button id="copiar">
+            Copiar
+        </button>
+
+    </section>
+
+    <section class="painel">
+
+        <h2>Configurações</h2>
+
+        <label>Tamanho da senha</label>
+
+        <div class="controle">
+
+            <button id="menos">-</button>
+
+            <span id="valorTamanho">12</span>
+
+            <button id="mais">+</button>
+
+        </div>
+
+        <label>
+            <input type="checkbox" id="maiusculas" checked>
+            Letras Maiúsculas
+        </label>
+
+        <label>
+            <input type="checkbox" id="minusculas" checked>
+            Letras Minúsculas
+        </label>
+
+        <label>
+            <input type="checkbox" id="numeros" checked>
+            Números
+        </label>
+
+        <label>
+            <input type="checkbox" id="simbolos" checked>
+            Símbolos
+        </label>
+
+        <button id="gerar">
+            Gerar Nova Senha
+        </button>
+
+    </section>
+
+    <section class="painel">
+
+        <h2>Força da Senha</h2>
+
+        <div class="barra">
+
+            <div id="forca"></div>
+
+        </div>
+
+        <p id="textoForca">
+            Aguardando...
+        </p>
+
+    </section>
+
+</main>
+
+<script src="gerar.js"></script>
+
+</body>
+</html>
