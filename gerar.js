@@ -1,14 +1,22 @@
-// ===== Elementos =====
+// =====================================================
+// PASSWORD SHIELD
+// Gerador de Senhas
+// Parte 1
+// =====================================================
+
+// ---------- Elementos ----------
 
 const campoSenha = document.getElementById("campoSenha");
 
-const btnGerar = document.getElementById("gerar");
-const btnCopiar = document.getElementById("copiar");
+const botaoGerar = document.getElementById("gerar");
+const botaoCopiar = document.getElementById("copiar");
 
-const btnMais = document.getElementById("mais");
-const btnMenos = document.getElementById("menos");
+const botaoMais = document.getElementById("mais");
+const botaoMenos = document.getElementById("menos");
 
-const tamanhoTexto = document.getElementById("valorTamanho");
+const mostrarSenha = document.getElementById("mostrarSenha");
+
+const valorTamanho = document.getElementById("valorTamanho");
 
 const barra = document.getElementById("forca");
 const textoForca = document.getElementById("textoForca");
@@ -18,122 +26,162 @@ const chkMinusculas = document.getElementById("minusculas");
 const chkNumeros = document.getElementById("numeros");
 const chkSimbolos = document.getElementById("simbolos");
 
-// ===== Constantes =====
+// ---------- Caracteres ----------
 
-const MAIUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
-const NUMEROS = "0123456789";
-const SIMBOLOS = "!@#$%&*?+-_=<>";
+const LETRAS_MAIUSCULAS =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-let tamanho = 12;
+const LETRAS_MINUSCULAS =
+"abcdefghijklmnopqrstuvwxyz";
 
-// ==========================
+const NUMEROS =
+"0123456789";
 
-tamanhoTexto.textContent = tamanho;
+const SIMBOLOS =
+"!@#$%&*()-_=+[]{}<>?/";
 
-// ==========================
+// ---------- Configuração ----------
 
-btnMais.onclick = () => {
+let tamanhoSenha = 16;
 
-    if (tamanho < 30) {
+valorTamanho.textContent = tamanhoSenha;
 
-        tamanho++;
+// =====================================================
+// BOTÕES DE TAMANHO
+// =====================================================
 
-        tamanhoTexto.textContent = tamanho;
+botaoMais.onclick = () => {
 
-    }
+    if(tamanhoSenha < 40){
 
-};
+        tamanhoSenha++;
 
-btnMenos.onclick = () => {
-
-    if (tamanho > 4) {
-
-        tamanho--;
-
-        tamanhoTexto.textContent = tamanho;
+        valorTamanho.textContent = tamanhoSenha;
 
     }
 
 };
 
-// ==========================
+botaoMenos.onclick = () => {
 
-btnGerar.onclick = gerarSenha;
+    if(tamanhoSenha > 4){
 
-btnCopiar.onclick = copiarSenha;
+        tamanhoSenha--;
 
-// ==========================
+        valorTamanho.textContent = tamanhoSenha;
 
-function gerarSenha(){
+    }
 
-    let grupos = [];
+};
+
+// =====================================================
+// MOSTRAR / ESCONDER SENHA
+// =====================================================
+
+mostrarSenha.onclick = () => {
+
+    if(campoSenha.type === "password"){
+
+        campoSenha.type = "text";
+
+        mostrarSenha.textContent = "🙈";
+
+        mostrarSenha.title = "Ocultar senha";
+
+    }
+
+    else{
+
+        campoSenha.type = "password";
+
+        mostrarSenha.textContent = "👁";
+
+        mostrarSenha.title = "Mostrar senha";
+
+    }
+
+};
+
+// =====================================================
+// EVENTOS
+// =====================================================
+
+botaoGerar.onclick = gerarSenha;
+
+botaoCopiar.onclick = copiarSenha;
+// =====================================================
+// GERAR SENHA
+// =====================================================
+
+function gerarSenha() {
 
     let caracteres = "";
 
-    if(chkMaiusculas.checked){
+    let senha = "";
 
-        grupos.push(MAIUSCULAS);
+    const grupos = [];
 
-        caracteres += MAIUSCULAS;
+    if (chkMaiusculas.checked) {
 
-    }
-
-    if(chkMinusculas.checked){
-
-        grupos.push(MINUSCULAS);
-
-        caracteres += MINUSCULAS;
+        caracteres += LETRAS_MAIUSCULAS;
+        grupos.push(LETRAS_MAIUSCULAS);
 
     }
 
-    if(chkNumeros.checked){
+    if (chkMinusculas.checked) {
 
-        grupos.push(NUMEROS);
+        caracteres += LETRAS_MINUSCULAS;
+        grupos.push(LETRAS_MINUSCULAS);
+
+    }
+
+    if (chkNumeros.checked) {
 
         caracteres += NUMEROS;
+        grupos.push(NUMEROS);
 
     }
 
-    if(chkSimbolos.checked){
-
-        grupos.push(SIMBOLOS);
+    if (chkSimbolos.checked) {
 
         caracteres += SIMBOLOS;
+        grupos.push(SIMBOLOS);
 
     }
 
-    if(caracteres.length == 0){
+    if (grupos.length === 0) {
 
-        alert("Selecione pelo menos uma opção.");
+        alert("Selecione pelo menos um tipo de caractere.");
 
         return;
 
     }
 
-    let senha = "";
+    // Garante pelo menos um caractere de cada grupo
 
-    // Garante um caractere de cada grupo
+    grupos.forEach(grupo => {
 
-    grupos.forEach(grupo=>{
+        const indice = Math.floor(Math.random() * grupo.length);
 
-        senha += grupo[Math.floor(Math.random()*grupo.length)];
+        senha += grupo[indice];
 
     });
 
-    // Completa o restante
+    // Completa a senha
 
-    while(senha.length < tamanho){
+    while (senha.length < tamanhoSenha) {
 
-        senha += caracteres[Math.floor(Math.random()*caracteres.length)];
+        const indice = Math.floor(Math.random() * caracteres.length);
+
+        senha += caracteres[indice];
 
     }
 
-    // Embaralha
+    // Embaralha os caracteres
 
     senha = senha
         .split("")
-        .sort(()=>Math.random()-0.5)
+        .sort(() => Math.random() - 0.5)
         .join("");
 
     campoSenha.value = senha;
@@ -141,123 +189,136 @@ function gerarSenha(){
     analisarSenha(senha);
 
 }
+// =====================================================
+// COPIAR SENHA
+// =====================================================
 
-// ==========================
+function copiarSenha() {
 
-function copiarSenha(){
-
-    if(campoSenha.value=="") return;
+    if (campoSenha.value === "") return;
 
     navigator.clipboard.writeText(campoSenha.value);
 
-    btnCopiar.textContent="Copiado!";
+    botaoCopiar.textContent = "✅ Senha copiada!";
 
-    setTimeout(()=>{
+    botaoCopiar.disabled = true;
 
-        btnCopiar.textContent="Copiar";
+    setTimeout(() => {
 
-    },1500);
+        botaoCopiar.textContent = "📋 Copiar Senha";
+
+        botaoCopiar.disabled = false;
+
+    }, 2000);
 
 }
 
-// ==========================
+// =====================================================
+// ANALISAR SENHA
+// =====================================================
 
-function analisarSenha(senha){
+function analisarSenha(senha) {
 
     let pontos = 0;
 
-    if(senha.length>=8) pontos+=20;
-    if(senha.length>=12) pontos+=10;
-    if(senha.length>=16) pontos+=10;
+    // Comprimento
 
-    if(/[A-Z]/.test(senha)) pontos+=15;
+    if (senha.length >= 8) pontos += 20;
+    if (senha.length >= 12) pontos += 10;
+    if (senha.length >= 16) pontos += 10;
+    if (senha.length >= 20) pontos += 10;
 
-    if(/[a-z]/.test(senha)) pontos+=15;
+    // Tipos de caracteres
 
-    if(/[0-9]/.test(senha)) pontos+=15;
+    if (/[A-Z]/.test(senha)) pontos += 15;
 
-    if(/[^A-Za-z0-9]/.test(senha)) pontos+=15;
+    if (/[a-z]/.test(senha)) pontos += 15;
 
-    // Repetições
+    if (/[0-9]/.test(senha)) pontos += 10;
 
-    if(/(.)\1{2,}/.test(senha)){
+    if (/[^A-Za-z0-9]/.test(senha)) pontos += 10;
 
-        pontos-=20;
+    // Penaliza repetições
+
+    if (/(.)\1{2,}/.test(senha)) {
+
+        pontos -= 20;
 
     }
 
-    // Sequências
+    // Penaliza sequências
 
     const sequencias = [
 
         "123","234","345","456","567","678","789",
 
-        "abc","bcd","cde","def","efg","fgh","ghi",
+        "abc","bcd","cde","def","efg","fgh",
 
-        "hij","ijk","jkl","klm","lmn","mno","nop",
-
-        "opq","pqr","qrs","rst","stu","tuv","uvw",
-
-        "vwx","wxy","xyz",
-
-        "qwerty",
-
-        "asdf",
-
-        "zxcv"
+        "qwerty","asdf","zxcv"
 
     ];
 
     const texto = senha.toLowerCase();
 
-    sequencias.forEach(seq=>{
+    sequencias.forEach(seq => {
 
-        if(texto.includes(seq)){
+        if (texto.includes(seq)) {
 
-            pontos-=15;
+            pontos -= 15;
 
         }
 
     });
 
-    pontos = Math.max(0,Math.min(100,pontos));
+    // Limita entre 0 e 100
+
+    pontos = Math.max(0, Math.min(100, pontos));
 
     atualizarBarra(pontos);
 
 }
 
-// ==========================
+// =====================================================
+// BARRA DE FORÇA
+// =====================================================
 
-function atualizarBarra(pontos){
+function atualizarBarra(pontos) {
 
-    barra.className="";
+    barra.style.width = pontos + "%";
 
-    if(pontos>=70){
+    barra.className = "";
 
-        barra.classList.add("forte");
-
-        textoForca.textContent=`Senha Forte (${pontos}/100)`;
-
-    }
-
-    else if(pontos>=40){
-
-        barra.classList.add("media");
-
-        textoForca.textContent=`Senha Média (${pontos}/100)`;
-
-    }
-
-    else{
+    if (pontos <= 30) {
 
         barra.classList.add("fraca");
 
-        textoForca.textContent=`Senha Fraca (${pontos}/100)`;
+        textoForca.textContent =
+            `🔴 Senha Fraca (${pontos}/100)`;
+
+    }
+
+    else if (pontos <= 70) {
+
+        barra.classList.add("media");
+
+        textoForca.textContent =
+            `🟡 Senha Média (${pontos}/100)`;
+
+    }
+
+    else {
+
+        barra.classList.add("forte");
+
+        textoForca.textContent =
+            `🟢 Senha Forte (${pontos}/100)`;
 
     }
 
 }
 
-// ==========================
+// =====================================================
+// GERA UMA SENHA AO ABRIR A PÁGINA
+// =====================================================
 
 gerarSenha();
